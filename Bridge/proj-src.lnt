@@ -1,0 +1,16 @@
+/*---------------------------------------------------------------------------------------------------------*/
+/*  Nuvoton Technology Corporation confidential                                                            */
+/*                                                                                                         */
+/*  Copyright (c) 2011 by Nuvoton Technology Corporation                                                   */
+/*  All rights reserved                                                                                    */
+/*                                                                                                         */
+/* File Contents:                                                                                          */
+/*   proj-src.lnt                                                                                          */
+/*            This file contains PC lint static source files list for Multi Touch project                  */
+/*            Additional files are added dynamically according to build configuration                      */
+/* Project:                                                                                                */
+/*           Multi Touch Bridge                                                                            */
+/*---------------------------------------------------------------------------------------------------------*/
+Bridge\*.c
+MT_HI\MT_HI_USB\*.c
+MT_TRANSPORT\MT_TRANSPORT_HID\*.c

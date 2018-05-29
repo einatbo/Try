@@ -1,0 +1,96 @@
+/*---------------------------------------------------------------------------------------------------------*/
+/*  Nuvoton Technology Corporation confidential                                                            */
+/*                                                                                                         */
+/*  Copyright (c) 2009 by Nuvoton Technology Corporation                                                   */
+/*  All rights reserved                                                                                    */
+/*                                                                                                         */
+/*<<<------------------------------------------------------------------------------------------------------*/
+/* File Contents:                                                                                          */
+/*   linkObj.def                                                                                           */
+/*            This file contains program mapping                                                           */
+/* Project:                                                                                                */
+/*            Multi-Touch Bridge                                                                           */
+/*---------------------------------------------------------------------------------------------------------*/
+
+//#define _08B_MODE
+
+MEMORY {
+
+    internal_ram :   ORIGIN = 0x10000,    LENGTH = 0x1000 						      /* Total (4Kb) RAM */
+#if defined _08B_MODE
+    	ram          :   ORIGIN = 0x11000,    LENGTH = 0x5000
+#else
+		ram          :   ORIGIN = 0x27000,    LENGTH = 0x6000
+		flash_head   :   ORIGIN = 0x20000,    LENGTH = 0x100                          /* Booter header */
+		flash        :   ORIGIN = 0x20100,    LENGTH = 0x6e7e
+
+		flash_end    :   ORIGIN = 0x26FFE,    LENGTH = 2
+#endif
+
+}
+
+SECTIONS {
+    /* booter header must reside at beginning of flash */
+    .header : { header.o(.rodata.*) *(.header_4) *(.header_2) *(.header_1) *(.header)} >  flash_head
+
+    /* start code must reside at beginning of firmware - where booter jumps to */
+    .start : { start.o(.text .text.*)  } > flash
+
+    /* code which accesses the FIU must run from RAM and not flash, to prevent contention on flash */
+    .fiu :
+    {
+      __FIU_START = .; fiu_rw.?(.text) __FIU_END = .;
+    } > ram AT > flash
+
+
+    .rdata : { __RDATA_START = .; *(.rodata.*) *(.rdata_4) *(.rdata_2) *(.rdata_1) __RDATA_END = .; } > flash
+
+    .nrdata : { __NRDATA_START = .; *(.nrodata.*) *(.nrdat_4) *(.nrdat_2) *(.nrdat_1) __NRDATA_END =  .; } > flash
+
+    .data :
+    {
+      __DATA_START = .; *(.data.*) *(.data_4) *(.data_2) *(.data_1) *(.data) __DATA_END = .;
+    } > ram AT > flash
+
+    .ndata :
+    {
+      __NDATA_START = .; *(.ndata.*) *(.ndata_4) *(.ndata_2) *(.ndata_1) __NDATA_END = .;
+    } > ram AT > flash
+
+    .bss (NOLOAD) :
+    {
+      __BSS_START = .; *(.bss.*) *(.bss_4) *(.bss_2) *(.bss_1) *(.bss) *(COMMON) __BSS_END = .;
+    } > ram
+
+    .nbss (NOLOAD) :
+    {
+      __NBSS_START = .; *(.nbss.*) *(.nbss_4) *(.nbss_2) *(.nbss_1) *(ncommon) __NBSS_END = .;
+    } > ram
+#if defined TRACE
+	.heap :
+	{
+		. = ALIGN(4); __HEAP_START = .; . += 0x2000; __HEAP_MAX = .;
+	} > ram
+#endif
+
+    .stack (NOLOAD) :
+    {
+      . = ALIGN(4); __STACK_END = .; . += 0x300; __STACK_START = .;
+    } > internal_ram
+
+    .istack (NOLOAD) :
+    {
+      . = ALIGN(2); __ISTACK_END = .; . += 0x100; __ISTACK_START = .;
+    } > internal_ram
+
+    /* rest of the code - on flash only */
+    .text : { *(.text) *(.text.*) } > flash
+
+	.code_end : { SHORT(0x9768) } >  flash_end
+}
+
+/* Variables needed for run-time data and code initialization */
+
+__DATA_IMAGE_START = LOADADDR(.data);
+__NDATA_IMAGE_START = LOADADDR(.ndata);
+__FIU_IMAGE_START = LOADADDR(.fiu);

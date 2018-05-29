@@ -1,0 +1,14 @@
+v1.0.0
+------
+- Added support for new Firmware handshake procedure (Host Ready/Not ready)
+- Added support for automatic detection of I2C/SPI connection
+- Added support for bridge diconnection and reconnection to target
+- Added support for 2-side communication between Windows Host and Bridge Firmware
+
+v0.5.1
+------
+- Added support for START and STOP commands from Host for clean initial connection
+
+v0.5.0
+------
+- Initial release

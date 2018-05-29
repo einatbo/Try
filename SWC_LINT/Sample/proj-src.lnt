@@ -1,0 +1,19 @@
+//    proj-src.lnt
+//    Project-Specific PC-Lint Source List Sample
+
+//    This file contains options to allow PC-Lint to process
+//    Project-Specific source files.
+
+// Please note -- this is a representative set of error suppression
+//                options.  Please adjust to suit your own policies
+//                See  manual (chapter LIVING WITH LINT)
+//                for further details.
+
+// Lint a specific C file, located in root
+.\main.c
+
+// Lint all C files under 'host' directory
+.\host\*.c
+
+// Lint all matching C files under 'drivers' directory, prefixed by 'drv_'
+.\drivers\drv_*.c

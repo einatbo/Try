@@ -1,0 +1,29 @@
+//    proj-cfg.lnt
+//    Project-Specific PC-Lint Configuration Sample
+
+//    This file contains high-level configurations to allow PC-Lint 
+//    to process Project-Specific components.
+
+// Please note -- this is a representative set of error suppression
+//                options.  Please adjust to suit your own policies
+//                See  manual (chapter LIVING WITH LINT)
+//                for further details.
+
+// Include PC-Lint Out-Of-The-Box Configurations - DO NOT REMOVE
+-i"C:\Lint\lnt"
+
+// Include Compiler PC-Lint Configuration
+co-cr16c.lnt
+
+// Include SWC_DEFS PC-Lint Configuration
+-i".\SWC_DEFS"
+swc-defs.lnt
+
+// Include SWC_HAL PC-Lint Configuration - ADJUST CHIP_NAME value
+-i".\SWC_HAL"
+-dCHIP_NAME=npcd378h
+swc-hal.lnt
+
+// Project-Specific PC-Lint Options
+-i".\sources"
+proj-opt.lnt

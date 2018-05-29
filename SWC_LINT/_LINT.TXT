@@ -1,0 +1,105 @@
+
+--- Module:   SWC_HAL\hal.c (C)
+                                          _
+	if (KBSCAN_MUX() != DEFS_STATUS_OK)
+P:\Projects\NewProducts\work\einat\ws\MT_SPI_USBHID_Bridge_FW_DEV\SWC_HAL\ModuleDrivers\kbscan\1\kbscan_drv.c 
+    114  Warning 506: Constant value Boolean
+P:\Projects\NewProducts\work\einat\ws\MT_SPI_USBHID_Bridge_FW_DEV\SWC_HAL\ModuleDrivers\kbscan\1\kbscan_drv.c 
+    114  Info 774: Boolean within 'if' always evaluates to False [Reference:
+    file P:\Projects\NewProducts\work\einat\ws\MT_SPI_USBHID_Bridge_FW_DEV\SWC_HAL\ModuleDrivers\kbscan\1\kbscan_drv.c:
+    line 114]
+P:\Projects\NewProducts\work\einat\ws\MT_SPI_USBHID_Bridge_FW_DEV\SWC_HAL\ModuleDrivers\kbscan\1\kbscan_drv.c 
+    114  Info 831: Reference cited in prior message
+_
+}
+P:\Projects\NewProducts\work\einat\ws\MT_SPI_USBHID_Bridge_FW_DEV\SWC_HAL\ModuleDrivers\kbscan\1\kbscan_drv.c 
+    426  Info 715: Symbol 'source' (line 412) not referenced
+P:\Projects\NewProducts\work\einat\ws\MT_SPI_USBHID_Bridge_FW_DEV\SWC_HAL\ModuleDrivers\kbscan\1\kbscan_drv.c 
+    412  Info 830: Location cited in prior message
+_
+}
+P:\Projects\NewProducts\work\einat\ws\MT_SPI_USBHID_Bridge_FW_DEV\SWC_HAL\ModuleDrivers\ps2\1\ps2_drv.c 
+    180  Warning 550: Symbol 'intr' (line 149) not accessed
+P:\Projects\NewProducts\work\einat\ws\MT_SPI_USBHID_Bridge_FW_DEV\SWC_HAL\ModuleDrivers\ps2\1\ps2_drv.c 
+    149  Info 830: Location cited in prior message
+_
+}
+P:\Projects\NewProducts\work\einat\ws\MT_SPI_USBHID_Bridge_FW_DEV\SWC_HAL\ModuleDrivers\ps2\1\ps2_drv.c 
+    243  Warning 550: Symbol 'intr' (line 201) not accessed
+P:\Projects\NewProducts\work\einat\ws\MT_SPI_USBHID_Bridge_FW_DEV\SWC_HAL\ModuleDrivers\ps2\1\ps2_drv.c 
+    201  Info 830: Location cited in prior message
+
+--- Module:   Bridge\main.c (C)
+_
+}
+Bridge\main.c  187  Info 715: Symbol 'intNum' (line 185) not referenced
+Bridge\main.c  185  Info 830: Location cited in prior message
+
+--- Module:   Bridge\header.c (C)
+
+--- Module:   Bridge\init_all.c (C)
+
+--- Module:   Bridge\bridge.c (C)
+                                                                             _
+    TRANSPORT_COMMAND_T*    pCommand    = (TRANSPORT_COMMAND_T*)BRIDGE_Buffer;
+Bridge\bridge.c  171  Info 826: Suspicious pointer-to-pointer conversion (area
+    too small)
+            _
+            goto suspected_found;
+Bridge\bridge.c  197  Info 801: Use of goto is deprecated
+            _
+            goto suspected_found;
+Bridge\bridge.c  207  Info 801: Use of goto is deprecated
+                                                                                  _
+#... IDGE_Read(sizeof(pCommand->size), (UINT8*)&reportSize)) != DEFS_STATUS_OK)
+    DEFS_STATUS_RET_CHECK(BRIDGE_Read(sizeof(pCommand->size), (UINT8*)&reportSize));
+Bridge\bridge.c  230  Info 747: Significant prototype coercion (arg. no. 1)
+    unsigned long to unsigned short
+
+During Specific Walk:
+  File Bridge\main.c line 85: BRIDGE_Find()
+Bridge\bridge.c  171  Info 826: Suspicious pointer-to-pointer conversion (area
+    too small)
+                                                                               _
+#... ret = BRIDGE_Read(sizeof(UINT16), (UINT8 *)&packetSize)) != DEFS_STATUS_OK
+        DEFS_STATUS_RET_CHECK(BRIDGE_Read(sizeof(UINT16), (UINT8 *)&packetSize));
+Bridge\bridge.c  308  Info 747: Significant prototype coercion (arg. no. 1)
+    unsigned long to unsigned short
+                                           _
+        pReport = (TRANSPORT_REPORT_T*)buff;
+Bridge\bridge.c  331  Info 826: Suspicious pointer-to-pointer conversion (area
+    too small)
+                                                    _
+            readSize = MIN(DEV_BUFF_SIZE, packetSize);
+Bridge\bridge.c  355  Info 732: Loss of sign (assignment) (int to unsigned
+    short)
+
+During Specific Walk:
+  File Bridge\main.c line 107: BRIDGE_SendToHost()
+Bridge\bridge.c  331  Info 826: Suspicious pointer-to-pointer conversion (area
+    too small)
+                                               _
+    memcpy(&BRIDGE_CommandBuffer[0], data, size);
+Bridge\bridge.c  523  Info 747: Significant prototype coercion (arg. no. 3)
+    unsigned short to unsigned long
+Bridge\bridge.c  523  Warning 669: Possible data overrun for function
+    'memcpy(void *, const void *, unsigned long)', argument 3 (size=65) exceeds
+    argument 1 (size=64) [Reference: file Bridge\bridge.c: lines 519, 523]
+Bridge\bridge.c  519  Info 831: Reference cited in prior message
+Bridge\bridge.c  523  Info 831: Reference cited in prior message
+
+--- Module:   Bridge\timer.c (C)
+
+--- Module:   Bridge\queue.c (C)
+
+--- Module:   MT_HI\MT_HI_USB\usb_touch.c (C)
+
+--- Module:   MT_TRANSPORT\MT_TRANSPORT_HID\hid.c (C)
+                                     _
+        xCoord = xCoord*PANEL_X_SIZE/HOST_X_SIZE;
+MT_TRANSPORT\MT_TRANSPORT_HID\hid.c  90  Info 712: Loss of precision
+    (assignment) (long to unsigned short)
+                                     _
+        yCoord = yCoord*PANEL_Y_SIZE/HOST_Y_SIZE;
+MT_TRANSPORT\MT_TRANSPORT_HID\hid.c  93  Info 712: Loss of precision
+    (assignment) (long to unsigned short)

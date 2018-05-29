@@ -1,0 +1,36 @@
+//    co-cr16c.lnt
+//    Compiler Options for CR version 4.1
+
+//    This file contains options to allow PC-Lint to process source
+//    files for the CompactRisc Gnu-based compiler (CR16C).
+//
+//    lint-nt  co-cr16c.lnt  source-file(s)
+//
+
+// CR16C is GNU-based, GCC version 3.3.2
+
+-fff                        // Reset the Fold Filenames flag
+co-gnu3.lnt
+
+// CR16C Specific PC-Lint Definitions
+-d__CR__                    // required by CR include files
+-d__CR16C__                 // required by defs
+-d__CRCC_VERSION__=41       // required by defs
+-d"_MACH_SZT=long unsigned int" // required by CR libraries
+-d"_MACH_PDT=long int"      // required by CR libraries
+-mL                         // large memory model
+-si2                        // int's are 2 bytes
+-sp4                        // pointers are 4 bytes
+
+// Override libraries macro definition, to avoid namespace issues
++d_STD_BEGIN=
++d_STD_END=
+
+// CR16C Libary Header Files Directories
+-i"%CRDIR%\include"
+-i"%CRDIR%\include\sys"
+-i"%CRDIR%\include\c++\3.3.2"
+-i"%CRDIR%\lib\cr16c\3.3.2\include"
+-i"%CRDIR%\lib\cr16c\3.3.2\include\c++\3.3.2"
+-i"%CRDIR%\src\libstart"
+

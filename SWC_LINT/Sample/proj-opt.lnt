@@ -1,0 +1,72 @@
+//    proj-opt.lnt
+//    Project-Specific PC-Lint Options Sample
+
+//    This file contains options to allow PC-Lint to process
+//    Project-Specific source files.
+
+// Please note -- this is a representative set of error suppression
+//                options.  Please adjust to suit your own policies
+//                See  manual (chapter LIVING WITH LINT)
+//                for further details.
+
+//-dNAME    define preprocessor variables
+-dDEBUG
+
+//-dNAME=VALUE    define preprocessor variables with value
+-DOS=0
+
+//-e# inhibits and
+//+e# re-enables 
+//error message(s) #.
+-e504
+
+//-efile( #, file [, file] ... ) inhibits and
+//+efile( #, file [, file] ... ) re-enables 
+//error message # for the indicated files
+//Please note, this does not inhibit messages within a file but rather messages about a file.
+-efile(537, defs.h)
+
+//-elib( # [, #] ... ) inhibits and
+//+elib( # [, #] ... ) re-enables 
+//error message # within library headers
+-elib(544)
+
+//-emacro( #, symbol, ... ) inhibits
+//+emacro( #, symbol, ... ) re-enables
+//message # for each of the macro symbols given
+-emacro(651, DEFINE_COEF)
+
+//-emacro( (*), symbol )
+//suppresses all messages for the macro.
+-emacro((*), ZERO)
+
+//-esym( #, Symbol [, Symbol] ... ) inhibits and
+//+esym( #, Symbol [, Symbol] ... ) re-enables
+//error message # for the indicated symbols
+-esym(715, int_num)
+
+//-efunc( #, Symbol [, Symbol] ... ) inhibits and
+//+efunc( #, Symbol [, Symbol] ... ) re-enables
+//message # issued from within any of the named functions
+-efunc(54, foo)
+
+//+ppw( word1 [, word2] ... ) adds
+//-ppw( word1 [, word2] ... ) removes
+//PreProcessor command Word(s)
++ppw(ident)
+
+//+rw( word1 [, word2] ... ) adds
+//-rw( word1 [, word2] ... ) removes
+//Reserved Word(s)
++rw(__volatile__)
+
+//-idirectory Files not found in the current directory are searched for in the directory specified
+-i".\drivers"
+
+//-uName can be used to Undefine an identifier that is normally pre-defined
+-uconst
+
+//+fie    Integer-model-for-Enum flag ON (default OFF).
+//If this flag is ON, a loose model for enumerations is used (loose model means that enumerations
+//are regarded semantically as integers). By default, a strict model is used
++fie

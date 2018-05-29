@@ -1,0 +1,24 @@
+Requirements:
+=============
+1) CR tools 4.1.3
+	This may be installed from:
+		\\tanap1\proj_sw\sw_dev_tools\NSC\CRTools4.1.3
+	There is a simple "how to install" in the root folder of the path above.
+	Please note- 4.1.3 is an upgrade to 4.1 so you will need CR tools 4.1 before upgrading to 4.1.3
+2) PC-lint 8.0
+	This may be installed from the following path:
+		\\tanap1\proj_sw\sw_dev_tools\PC-Lint\Installation
+	Important: Install the PC-lint in the default directory (c:\lint)
+
+
+How to build MFTS Booter:
+==========================
+1) Open CR tools 4.1 environment
+2) change directory to root folder
+3) Execute the following command:
+	> build.bat clean
+
+
+Deliverables:
+=============
+Located in 'Deliverables' folder.
